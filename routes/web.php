@@ -23,3 +23,5 @@ Route::get('tareas/{nombre?}', function($nombre="usuario"){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('/tarea', 'TareaController');
