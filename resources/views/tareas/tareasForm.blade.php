@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="descripcion">Descripción</label>
-                                    <textarea class="form-control" id="descripcion" name="descripcion">{{ $tarea->descripcion ?? null }}</textarea>
+                                    <textarea class="form-control" id="descripcion" name="descripcion">{{ $tarea->descripcion ?? null }} </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="prioridad">Prioridad</label>
@@ -37,6 +37,11 @@
                                         <option value="1" {{ $tarea->descripcion ?? null && $tarea->prioridad == 1 ? 'Selected' : '' }} >Baja (1)</option>
                                         <option value="5" {{ $tarea->descripcion ?? null &&  $tarea->prioridad == 5 ? 'Selected' : '' }}>Media (5)</option>
                                         <option value="10" {{ $tarea->descripcion ?? null &&  $tarea->prioridad == 10 ? 'Selected' : '' }}>Alta (10)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="prioridad">Categoria</label>
+                                    <select name="categoria_id" class="form-control">
                                     </select>
                                 </div>
 

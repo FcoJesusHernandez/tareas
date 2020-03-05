@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Tarea;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TareaController extends Controller
 {
@@ -26,7 +28,8 @@ class TareaController extends Controller
      */
     public function create()
     {
-        return view('tareas.tareasForm');
+        $categorias = Categoria::all()->pluck('nombre_categoria', 'id');
+        return view('tareas.tareasForm', compact('categorias'));
     }
 
     /**
@@ -41,8 +44,10 @@ class TareaController extends Controller
         $tarea->nombre_tarea = $request->nombre_tarea;
         $tarea->fecha_inicio = $request->fecha_inicio;
         $tarea->fecha_termino = $request->fecha_termino;
+        $tarea->user_id = Auth::id();
         $tarea->descripcion = $request->descripcion;
         $tarea->prioridad = $request->prioridad;
+        $tarea->categoria_id = $request->categoria;
         $tarea->terminado = false;
         $tarea->save();
 
@@ -70,7 +75,8 @@ class TareaController extends Controller
      */
     public function edit(Tarea $tarea)
     {
-        return view('tareas.tareasForm', compact('tarea'));
+        $categorias = Categoria::all()->pluck('nombre_categoria', 'id');
+        return view('tareas.tareasForm', compact('tarea', 'categorias'));
     }
 
     /**
@@ -82,7 +88,16 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        //
+        $tarea->nombre_tarea = $request->nombre_tarea;
+        $tarea->fecha_inicio = $request->fecha_inicio;
+        $tarea->fecha_termino = $request->fecha_termino;
+        $tarea->descripcion = $request->descripcion;
+        $tarea->prioridad = $request->prioridad;
+        $tarea->categoria_id = $request->categoria_id;
+        $tarea->terminado = false;
+        $tarea->save();
+
+        return redirect()->route('tarea.show', $tarea->id);
     }
 
     /**

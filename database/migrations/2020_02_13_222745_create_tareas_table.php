@@ -19,7 +19,7 @@ class CreateTareasTable extends Migration
             $table->date('fecha_inicio');
             $table->date('fecha_termino');
             $table->text('descripcion');
-            $table->unsignedInteger('categoria_id')->nullable();
+            $table->unsignedInteger('categoria_id');
             $table->smallInteger('prioridad')->unsigned();
             $table->string('estatus')->nullable();
             $table->boolean('terminado')->default(false);
