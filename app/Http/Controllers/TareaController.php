@@ -40,7 +40,10 @@ class TareaController extends Controller
      */
     public function store(Request $request)
     {
-        $tarea = new tarea();
+        $request->merge(['user_id' => Auth::id()]);
+        Tarea::created($request->all());
+
+        /*$tarea = new tarea();
         $tarea->nombre_tarea = $request->nombre_tarea;
         $tarea->fecha_inicio = $request->fecha_inicio;
         $tarea->fecha_termino = $request->fecha_termino;
@@ -49,7 +52,7 @@ class TareaController extends Controller
         $tarea->prioridad = $request->prioridad;
         $tarea->categoria_id = $request->categoria;
         $tarea->terminado = false;
-        $tarea->save();
+        $tarea->save();**/
 
         redirect()->route('tarea.index');
     }
@@ -88,14 +91,15 @@ class TareaController extends Controller
      */
     public function update(Request $request, Tarea $tarea)
     {
-        $tarea->nombre_tarea = $request->nombre_tarea;
+        Tarea::where('id', $tarea->id)->update($request->except('_token', '_method'));
+        /*$tarea->nombre_tarea = $request->nombre_tarea;
         $tarea->fecha_inicio = $request->fecha_inicio;
         $tarea->fecha_termino = $request->fecha_termino;
         $tarea->descripcion = $request->descripcion;
         $tarea->prioridad = $request->prioridad;
         $tarea->categoria_id = $request->categoria_id;
         $tarea->terminado = false;
-        $tarea->save();
+        $tarea->save();*/
 
         return redirect()->route('tarea.show', $tarea->id);
     }

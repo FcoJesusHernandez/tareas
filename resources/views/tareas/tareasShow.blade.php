@@ -19,11 +19,11 @@
                         </div>
                         <div class="form-group">
                             <label>Fecha inicio : </label>
-                            <label>{{ $tarea->fecha_inicio }}</label>
+                            <label>{{ $tarea->fecha_inicio->format('d/m/Y') }}</label>
                         </div>
                         <div class="form-group">
                             <label>Fecha termino : </label>
-                            <label>{{ $tarea->fecha_termino }}</label>
+                            <label>{{ $tarea->fecha_termino->format('d/m/Y') }}</label>
                         </div>
                         <div class="form-group">
                             <label>Descripción : </label>

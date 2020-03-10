@@ -17,6 +17,8 @@
                                 <th>Descripcion</th>
                                 <th>Fecha inicio</th>
                                 <th>Fecha fin</th>
+                                <th>Usuario</th>
+                                <th>Categoria</th>
                             </thead>
                             <tbody>
                                 @isset($tareas)
@@ -25,8 +27,10 @@
                                     <td><a href="{{ route('tarea.show', $tarea->id) }}">{{$tarea->id}}</a></td>
                                     <td>{{$tarea->nombre_tarea}}</td>
                                     <td>{{$tarea->descripcion}}</td>
-                                    <td>{{$tarea->fecha_inicio}}</td>
-                                    <td>{{$tarea->fecha_termino}}</td>
+                                    <td>{{$tarea->fecha_inicio->format('d/m/Y')}}</td>
+                                    <td>{{$tarea->fecha_termino->format('d/m/Y')}}</td>
+                                    <td>{{$tarea->categoria->nombre_categoria}}</td>
+                                    <td>{{$tarea->user->name}}</td>
                                 </tr>
                                 @endforeach
                                 @endisset

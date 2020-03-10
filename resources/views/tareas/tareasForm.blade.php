@@ -19,6 +19,8 @@
                                     <label for="nombre_tarea">Nombre </label>
                                 <input type="text" class="form-control" id="nombre_tarea" name="nombre_tarea" value="{{ $tarea->nombre_tarea ?? null }}">
                                 </div>
+
+                                isset($tarea) ? $tarea->feche_inicio->toDateString() : null
                                 <div class="form-group">
                                     <label for="fecha_inicio">Fecha inicio</label>
                                     <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" value="{{ $tarea->fecha_inicio ?? null }}">
